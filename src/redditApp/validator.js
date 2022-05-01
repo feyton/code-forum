@@ -10,7 +10,7 @@ export const ReditValidation = () => [
     .withMessage("This is too short")
     .bail()
     .custom(async (value, { req, location, path }) => {
-      const subreddit = req.params.subreddit;
+      const subreddit = req.body.subreddit;
       const exist = await SubReddit.findById(subreddit);
       if (!exist) return Promise.reject("This subreddit does not exist");
       const titleTaken = await Post.findOne({ subreddit, title: value });
