@@ -7,7 +7,6 @@ export const CreateReddit = async (req, res) => {
     author: req.user._id,
     ...req.body,
   };
-  console.log(data);
   const reddit = await Post.create(data);
   if (reddit) return responseHandler(res, 201, reddit);
   return responseHandler(res, 400, "Bad data");
@@ -43,7 +42,6 @@ export const getReddits = async (req, res) => {
       },
     }
   );
-  console.log(reddits);
   return responseHandler(res, 200, reddits);
 };
 export const subReddits = async (req, res) => {
@@ -73,4 +71,13 @@ export const getReddit = async (req, res) => {
     comments: await reddit.getComments(),
   };
   return responseHandler(res, 200, data);
+};
+
+export const getOptions = async (req, res) => {
+  const subs = await SubReddit.find({});
+  const options = subs.map(({ _id, title }) => ({
+    name: title,
+    id: _id,
+  }));
+  return responseHandler(res, 200, options);
 };

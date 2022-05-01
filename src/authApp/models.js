@@ -46,13 +46,11 @@ userSchema.methods.checkPass = async function (password) {
 
 userSchema.statics.checkUsername = async function (username) {
   const users = await this.findOne({ username });
-  console.log(users);
   if (users) return true;
   return false;
 };
 userSchema.statics.checkEmail = async function (email) {
   const users = await this.findOne({ email });
-  console.log(users);
   if (users) return true;
   return false;
 };

@@ -15,6 +15,7 @@ const router = Router();
 
 router.get("/all", views.getReddits);
 router.get("/sub", views.subReddits);
+router.get("/options", views.getOptions);
 router.get("/sub/:id", validateId, views.getReddit);
 router.post(
   "/",
@@ -23,13 +24,7 @@ router.post(
   validate,
   views.createSubReddit
 );
-router.post(
-  "/:subreddit",
-  verifyJWT,
-  ReditValidation(),
-  validate,
-  views.CreateReddit
-);
+router.post("/sub", verifyJWT, ReditValidation(), validate, views.CreateReddit);
 router.get(
   "/:subreddit",
   verifyJWT,
