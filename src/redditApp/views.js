@@ -7,6 +7,10 @@ export const CreateReddit = async (req, res) => {
     author: req.user._id,
     ...req.body,
   };
+  if (req.file) {
+    data.image = req.file.path;
+    data.publicid = req.file.public_id;
+  }
   const reddit = await Post.create(data);
   if (reddit) return responseHandler(res, 201, reddit);
   return responseHandler(res, 400, "Bad data");
