@@ -79,6 +79,15 @@ const PostScema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image:{
+      type: String,
+      required: false,
+      default: "https://res.cloudinary.com/dci8tsnsb/image/upload/v1650072628/n7ac9rklqcyrzrs2qlay.jpg"
+
+    },
+    publicid:{
+      type:String,
+    },
     meta: {
       upvotes: Number,
       downvotes: Number,

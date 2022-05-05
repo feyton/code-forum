@@ -1,3 +1,6 @@
+const DatauriParser = require('datauri/parser')
 const slug = require("mongoose-slug-generator");
 
-module.exports = { slug };
+const parser = new DatauriParser()
+
+module.exports = { slug, parser };

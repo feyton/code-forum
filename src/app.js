@@ -6,6 +6,7 @@ import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import authRouter from "./authApp/routes.js";
 import commentRouter from "./commentApp/routes.js";
+import { cloudinaryConfig } from "./configs/base.js";
 import {
   optionsToCustomizeSwagger,
   swaggerOptions,
@@ -19,7 +20,7 @@ const app = express();
 app.use(express.json());
 dotenv.config();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -28,6 +29,7 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(swaggerSpec, optionsToCustomizeSwagger, { explorer: true })
 );
+app.use(cloudinaryConfig);
 app.use("/api/v1/accounts", authRouter);
 app.use("/api/v1/reddits", redditRouter);
 app.use("/api/v1/comments", commentRouter);
